@@ -20,54 +20,72 @@ const board = () => {
         return targetSquare;
     }
 
-    // add paths to each square node:
+    // add moves to each square node:
     squares.forEach(square => {
         if ((square.x - 1) >= 0 && (square.y + 2) <= 7) {
-            square.paths.push(findSquare((square.x - 1), (square.y + 2)));
+            square.moves.push(findSquare((square.x - 1), (square.y + 2)));
         }
         if ((square.x + 1) <= 7 && (square.y + 2) <= 7) {
-            square.paths.push(findSquare((square.x + 1), (square.y + 2)));
+            square.moves.push(findSquare((square.x + 1), (square.y + 2)));
         }
         if ((square.x - 2) >= 0 && (square.y + 1) <= 7) {
-            square.paths.push(findSquare((square.x - 2), (square.y + 1)));
+            square.moves.push(findSquare((square.x - 2), (square.y + 1)));
         }
         if ((square.x + 2) <= 7 && (square.y + 1) <= 7) {
-            square.paths.push(findSquare((square.x + 2), (square.y + 1)));
+            square.moves.push(findSquare((square.x + 2), (square.y + 1)));
         }
         if ((square.x - 2) >= 0 && (square.y - 1) >= 0) {
-            square.paths.push(findSquare((square.x - 2), (square.y - 1)));
+            square.moves.push(findSquare((square.x - 2), (square.y - 1)));
         }
         if ((square.x + 2) <= 7 && (square.y - 1) >= 0) {
-            square.paths.push(findSquare((square.x + 2), (square.y - 1)));
+            square.moves.push(findSquare((square.x + 2), (square.y - 1)));
         }
         if ((square.x - 1) >= 0 && (square.y - 2) >= 0) {
-            square.paths.push(findSquare((square.x - 1), (square.y - 2)));
+            square.moves.push(findSquare((square.x - 1), (square.y - 2)));
         }
         if ((square.x + 1) <= 7 && (square.y - 2) >= 0) {
-            square.paths.push(findSquare((square.x + 1), (square.y - 2)));    
+            square.moves.push(findSquare((square.x + 1), (square.y - 2)));    
         }
-    })
+    });
 
     // default knight position:
     let knight = [0, 0];
 
-    return { squares, knight, findSquare }
+    function knightMoves(start, end, counter = 1, path = [findSquare(start[0], start[1])]) {
+        const startSquare = findSquare(start[0], start[1]);
+        const endSquare = findSquare(end[0], end[1]);
+        startSquare.moves.forEach(move => {
+            if (move === endSquare) {
+                path.push(endSquare);
+                if (counter === 1) {
+                    console.log(`You made it in ${counter} move. Your path was:`);
+                } else {
+                    console.log(`You made it in ${counter} moves. Your path was:`);
+                }
+                path.forEach(move => {
+                    console.log(move.x + ', ' + move.y);
+                })
+                return;
+            } else {
+                counter = counter + 1;
+                path.push(move);
+                knightMoves([move.x, move.y], [endSquare.x, endSquare.y], counter, path);
+            }
+            // knightMoves(move, end, counter = counter + 1, path);
+        });
+    }
+
+    return { squares, knight, findSquare, knightMoves }
 }
 
 // each square has an x coordinate value, a y coordinate value, 
-// and a 'paths' array which will contain a list of the squares to which the knight can travel:
+// and a 'moves' array which will contain a list of the squares to which the knight can travel:
 const square = (x, y) => {
-    let paths = [];
+    let moves = [];
 
-    return { x, y, paths }
+    return { x, y, moves }
 }
-
-function knightMoves(start, end) {
-
-}
-
 
 const myBoard = board();
-console.log(myBoard.squares);
-const mySquare = myBoard.findSquare(4, 4);
-console.log(mySquare)
+
+myBoard.knightMoves([0,0], [0, 4]);
