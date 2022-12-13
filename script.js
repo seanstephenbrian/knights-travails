@@ -20,6 +20,34 @@ const board = () => {
         return targetSquare;
     }
 
+    // add paths to each square node:
+    squares.forEach(square => {
+        if ((square.x - 1) >= 0 && (square.y + 2) <= 7) {
+            square.paths.push(findSquare((square.x - 1), (square.y + 2)));
+        }
+        if ((square.x + 1) <= 7 && (square.y + 2) <= 7) {
+            square.paths.push(findSquare((square.x + 1), (square.y + 2)));
+        }
+        if ((square.x - 2) >= 0 && (square.y + 1) <= 7) {
+            square.paths.push(findSquare((square.x - 2), (square.y + 1)));
+        }
+        if ((square.x + 2) <= 7 && (square.y + 1) <= 7) {
+            square.paths.push(findSquare((square.x + 2), (square.y + 1)));
+        }
+        if ((square.x - 2) >= 0 && (square.y - 1) >= 0) {
+            square.paths.push(findSquare((square.x - 2), (square.y - 1)));
+        }
+        if ((square.x + 2) <= 7 && (square.y - 1) >= 0) {
+            square.paths.push(findSquare((square.x + 2), (square.y - 1)));
+        }
+        if ((square.x - 1) >= 0 && (square.y - 2) >= 0) {
+            square.paths.push(findSquare((square.x - 1), (square.y - 2)));
+        }
+        if ((square.x + 1) <= 7 && (square.y - 2) >= 0) {
+            square.paths.push(findSquare((square.x + 1), (square.y - 2)));    
+        }
+    })
+
     // default knight position:
     let knight = [0, 0];
 
@@ -30,32 +58,6 @@ const board = () => {
 // and a 'paths' array which will contain a list of the squares to which the knight can travel:
 const square = (x, y) => {
     let paths = [];
-
-
-    // if ((x - 1) >= 0 && (y + 2) <= 7) {
-    //     paths.push([x - 1, y + 2]);
-    // }
-    // if ((x + 1) <= 7 && (y + 2) <= 7) {
-    //     paths.push([x + 1, y + 2]);
-    // }
-    // if ((x - 2) >= 0 && (y + 1) <= 7) {
-    //     paths.push([x - 2], [y + 1]);
-    // }
-    // if ((x + 2) <= 7 && (y + 1) <= 7) {
-    //     paths.push([x + 2, y + 1]);
-    // }
-    // if ((x - 2) >= 0 && (y - 1) >= 0) {
-    //     paths.push([x - 2, y - 1]);
-    // }
-    // if ((x + 2) <= 7 && (y - 1) >= 0) {
-    //     paths.push([x + 2, y - 1]);
-    // }
-    // if ((x - 1) >= 0 && (y - 2) >= 0) {
-    //     paths.push([x - 1, y - 2]);
-    // }
-    // if ((x + 1) <= 7 && (y - 2) >= 0) {
-    //     paths.push([x + 1, y - 2]);    
-    // }
 
     return { x, y, paths }
 }
