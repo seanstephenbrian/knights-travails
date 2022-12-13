@@ -51,29 +51,51 @@ const board = () => {
     // default knight position:
     let knight = [0, 0];
 
-    function knightMoves(start, end, counter = 1, path = [findSquare(start[0], start[1])]) {
+    function knightMoves(start, end) {
+        let pathIdentified = false;
         const startSquare = findSquare(start[0], start[1]);
         const endSquare = findSquare(end[0], end[1]);
-        startSquare.moves.forEach(move => {
-            if (move === endSquare) {
-                path.push(endSquare);
-                if (counter === 1) {
-                    console.log(`You made it in ${counter} move. Your path was:`);
-                } else {
-                    console.log(`You made it in ${counter} moves. Your path was:`);
-                }
-                path.forEach(move => {
-                    console.log(move.x + ', ' + move.y);
-                })
-                return;
-            } else {
-                counter = counter + 1;
-                path.push(move);
-                knightMoves([move.x, move.y], [endSquare.x, endSquare.y], counter, path);
-            }
-            // knightMoves(move, end, counter = counter + 1, path);
-        });
+        let path = [startSquare];
+        for (let counter = 0; counter < 7; counter++) {
+
+        }
+        function knightMovesRec(start, end, counter, path) {
+            
+        }
+
     }
+
+    // function knightMoves(start, end) {
+    //     let squareFound = false;
+
+    //     function knightMovesRecursion(start, end, counter = 1, path = [findSquare(start[0], start[1])]) {
+
+    //         const startSquare = findSquare(start[0], start[1]);
+    //         const endSquare = findSquare(end[0], end[1]);
+    //         startSquare.moves.forEach(move => {
+    //             if (move === endSquare) {
+    //                 squareFound = true;
+    //                 path.push(endSquare);
+    //                 if (counter === 1) {
+    //                     console.log(`You made it in ${counter} move. Your path was:`);
+    //                 } else {
+    //                     console.log(`You made it in ${counter} moves. Your path was:`);
+    //                 }
+    //                 path.forEach(move => {
+    //                     console.log(move.x + ', ' + move.y);
+    //                 });
+    //                 return;
+    //             } else if (counter < 5 && squareFound === false) {
+    //                 counter = counter + 1;
+    //                 path.push(move);
+    //                 knightMovesRecursion([move.x, move.y], [endSquare.x, endSquare.y], counter, path);
+    //             }
+    //         });
+    //     };
+
+    //     knightMovesRecursion(start, end);
+    
+    // }
 
     return { squares, knight, findSquare, knightMoves }
 }
@@ -88,4 +110,4 @@ const square = (x, y) => {
 
 const myBoard = board();
 
-myBoard.knightMoves([0,0], [0, 4]);
+myBoard.knightMoves([0,0], [1, 2]);
