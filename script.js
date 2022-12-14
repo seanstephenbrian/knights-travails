@@ -55,28 +55,44 @@ const board = () => {
         const startingSquare = findSquare(start[0], start[1]);
         const endingSquare = findSquare(end[0], end[1]);
         let path = [];
+        const visitedSquares = new Set();
 
         search: {
             let queue = [];
+            let previousSquare = null;
+            let currentSquare = null;
             queue.push(startingSquare);
             while (queue.length > 0) {
-                let currentSquare = queue.shift();
-                if (currentSquare === endingSquare) {
-                    path.push(currentSquare)
-                    console.log(currentSquare)
+                previousSquare = currentSquare;
+                currentSquare = queue.shift();
+                visitedSquares.add(currentSquare);
+                path.push([previousSquare, currentSquare]);
+                if (currentSquare.moves.includes(endingSquare)) {
+                    path.push([currentSquare, endingSquare]);
                     break search;
                 } else {
                     currentSquare.moves.forEach(move => {
-                        queue.push(move);
+                        if (move.moves.includes(endingSquare)) {
+                            queue.unshift(move);
+                        }
+                        move.moves.forEach(move => {
+                            if (move.moves.includes(endingSquare)) {
+                                queue.unshift(move);
+                            }
+                        });
+                        
+                        if (!visitedSquares.has(move)) {
+                            queue.push(move);
+                        }
                     });
                 }
             }
         }
 
-
+        console.log(visitedSquares)
         console.log(path);
 
-        }
+    }
 
 
 
