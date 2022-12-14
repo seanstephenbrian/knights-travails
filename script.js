@@ -51,35 +51,41 @@ const board = () => {
     // default knight position:
     let knight = [0, 0];
 
+    function knightMoves(start, end) {
+        const startingSquare = findSquare(start[0], start[1]);
+        const endingSquare = findSquare(end[0], end[1]);
+        let path = [];
+
+        search: {
+            let queue = [];
+            queue.push(startingSquare);
+            while (queue.length > 0) {
+                let currentSquare = queue.shift();
+                if (currentSquare === endingSquare) {
+                    path.push(currentSquare)
+                    console.log(currentSquare)
+                    break search;
+                } else {
+                    currentSquare.moves.forEach(move => {
+                        queue.push(move);
+                    });
+                }
+            }
+        }
+
+
+        console.log(path);
+
+        }
 
 
 
 
 
-    
-    // function knightMoves(start, end) {
-    //     const startingSquare = findSquare(start[0], start[1]);
-    //     const endingSquare = findSquare(end[0], end[1]);
-    //     let allPaths = [[startingSquare, null]];
-    //     let finalPath = [];
 
-    //     search: {
-    //         let queue = [];
-    //         queue.push(startingSquare);
-    //         while (queue.length > 0) {
-    //             let currentSquare = queue.shift();
-    //             allPaths.push([currentSquare, allPaths[allPaths.length - 1][0]]);
-    //             if (currentSquare === endingSquare) {
 
-    //                 break search;
-    //             } else {
-    //                 currentSquare.moves.forEach(move => {
-    //                     queue.push(move);
-    //                 });
-    //             }
-    //         }
-    //     }
-    // }
+
+
 
 
     // function knightMoves(start, end) {
