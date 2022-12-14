@@ -51,19 +51,111 @@ const board = () => {
     // default knight position:
     let knight = [0, 0];
 
-    function knightMoves(start, end) {
-        let pathIdentified = false;
-        const startSquare = findSquare(start[0], start[1]);
-        const endSquare = findSquare(end[0], end[1]);
-        let path = [startSquare];
-        for (let counter = 0; counter < 7; counter++) {
 
-        }
-        function knightMovesRec(start, end, counter, path) {
+
+
+
+
+    
+    // function knightMoves(start, end) {
+    //     const startingSquare = findSquare(start[0], start[1]);
+    //     const endingSquare = findSquare(end[0], end[1]);
+    //     let allPaths = [[startingSquare, null]];
+    //     let finalPath = [];
+
+    //     search: {
+    //         let queue = [];
+    //         queue.push(startingSquare);
+    //         while (queue.length > 0) {
+    //             let currentSquare = queue.shift();
+    //             allPaths.push([currentSquare, allPaths[allPaths.length - 1][0]]);
+    //             if (currentSquare === endingSquare) {
+
+    //                 break search;
+    //             } else {
+    //                 currentSquare.moves.forEach(move => {
+    //                     queue.push(move);
+    //                 });
+    //             }
+    //         }
+    //     }
+    // }
+
+
+    // function knightMoves(start, end) {
+    //     let startingSquare = findSquare(start[0], start[1]);
+    //     let endingSquare = findSquare(end[0], end[1]);
+
+    //     let pathIdentified = false;
+    //     let finalPath = [];
+
+    //     function knightMovesRec(start, path = [start]) {
+    //         if (start === endingSquare) {
+    //             finalPath = path;
+    //             pathIdentified = true;
+    //         } else if (start !== endingSquare) {
+    //             start.moves.forEach(move => {
+    //                 path.push(move);
+    //                 knightMovesRec(move, path);
+    //             });
+    //         }
+    //     }
+
+    //     do {
+    //         knightMovesRec(startingSquare);
+    //     } while (pathIdentified === false);
+
+    //     const moves = finalPath.length - 1;
+
+    //     if (moves === 1) {
+    //         console.log(`You made it in ${moves} move. Your path was:`);
+    //     } else {
+    //         console.log(`You made it in ${moves} moves. Your path was:`);
+    //     }
+    //     moves.forEach(move => {
+    //         console.log(move.x + ', ' + move.y);
+    //     });
+    // }
+
+    // function knightMoves(start, end) {
+
+    //     let pathIdentified = false;
+    //     const endSquare = findSquare(end[0], end[1]);  
+    //     let counter = 0;
+
+    //     while (counter < 7) {
+    //         function knightMovesRec(start, path = [findSquare(start[0], start[1])]) {
+
+    //             if (pathIdentified === true) return;
+    
+    //             const startSquare = findSquare(start[0], start[1]);
+                
+    //             startSquare.moves.forEach(move => {
+    //                 path.push(move);
+    //                 if (move === endSquare) {
+    //                     pathIdentified = true;
+    //                     if (counter === 1) {
+    //                         console.log(`You made it in ${counter} move. Your path was:`);
+    //                     } else {
+    //                         console.log(`You made it in ${counter} moves. Your path was:`);
+    //                     }
+    //                     path.forEach(move => {
+    //                         console.log(move.x + ', ' + move.y);
+    //                     });
+    //                     return;
+    //                 } else {
+    //                     counter++;
+    //                     knightMovesRec([move.x, move.y], path)
+    //                 }
+    //             });
+    //         }
+    //         knightMovesRec(start, end);
             
-        }
+    //     }
 
-    }
+        
+
+    // }
 
     // function knightMoves(start, end) {
     //     let squareFound = false;
@@ -93,7 +185,7 @@ const board = () => {
     //         });
     //     };
 
-    //     knightMovesRecursion(start, end);
+    // //     knightMovesRecursion(start, end);
     
     // }
 
@@ -110,4 +202,4 @@ const square = (x, y) => {
 
 const myBoard = board();
 
-myBoard.knightMoves([0,0], [1, 2]);
+myBoard.knightMoves([0,0], [7, 7]);
