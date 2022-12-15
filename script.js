@@ -132,7 +132,7 @@ const board = () => {
         })
     }
 
-    return { squares, findSquare, knightMoves }
+    return { knightMoves }
 }
 
 // each square has an x coordinate value, a y coordinate value, 
@@ -146,4 +146,4 @@ const square = (x, y) => {
 
 const myBoard = board();
 
-myBoard.knightMoves([3, 3], [0, 0]);
+myBoard.knightMoves([3, 3], [7, 0]);
