@@ -115,7 +115,13 @@ const board = () => {
         }
         console.log('Your path was:');
         path.forEach(move => {
-            console.log(move.x + ', ' + move.y);
+            if (move === startingSquare) {
+                console.log(move.x + ', ' + move.y + ' (START)');
+            } else if (move === endingSquare) {
+                console.log(move.x + ', ' + move.y + ' (END)');
+            } else {
+                console.log(move.x + ', ' + move.y);
+            }
         })
     }
 
@@ -140,4 +146,4 @@ const square = (x, y) => {
 
 const myBoard = board();
 
-myBoard.knightMoves([0,0], [2, 4]);
+myBoard.knightMoves([0,0], [7, 7]);
