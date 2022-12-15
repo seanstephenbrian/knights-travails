@@ -116,11 +116,11 @@ const board = () => {
         console.log('Your path was:');
         path.forEach(move => {
             if (move === startingSquare) {
-                console.log(move.x + ', ' + move.y + ' (START)');
+                console.log(`START:   ${move.x}, ${move.y}`);
             } else if (move === endingSquare) {
-                console.log(move.x + ', ' + move.y + ' (END)');
+                console.log(`  END:   ${move.x}, ${move.y}`);
             } else {
-                console.log(move.x + ', ' + move.y);
+                console.log(`         ${move.x}, ${move.y}`);
             }
         })
     }
