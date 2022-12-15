@@ -53,7 +53,13 @@ const board = () => {
 
         // find the actual squares based on the input coordinates:
         const startingSquare = findSquare(start[0], start[1]);
+        if (!startingSquare) {
+            throw new Error('Invalid starting position');
+        }
         const endingSquare = findSquare(end[0], end[1]);
+        if (!endingSquare) {
+            throw new Error('Invalid ending position');
+        }
 
         // create a set to track which squares have been visited 
         // & ensure the knight doesn't go back to them:
@@ -146,4 +152,4 @@ const square = (x, y) => {
 
 const myBoard = board();
 
-myBoard.knightMoves([3, 3], [7, 0]);
+myBoard.knightMoves([1, 1], [2, 3]);
