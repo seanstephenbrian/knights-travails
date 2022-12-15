@@ -146,4 +146,4 @@ const square = (x, y) => {
 
 const myBoard = board();
 
-myBoard.knightMoves([0,0], [7, 7]);
+myBoard.knightMoves([3, 3], [0, 0]);
